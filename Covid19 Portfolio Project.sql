@@ -210,20 +210,20 @@ order by TotalDeathCount desc
 
 
 CREATE VIEW HighestInfectionCountperCountry as
-SELECT location, MAX(total_cases) as HighestInfectionCount, population, MAX((total_cases/population))*100 AS MaxInfectionRate
+SELECT location, MAX(total_cases) as HighestInfectionCount, population, MAX((total_cases/population))*100 AS PercentPopInfected
 FROM dbo.CovidDeaths
 WHERE continent is not null
 GROUP BY location, population
---ORDER BY MaxInfectionRate DESC
+--ORDER BY PercentPopInfected DESC
 
 
 --Create a view to include dates
 
 CREATE VIEW HighestInfectionCountperCountryperDay as
-SELECT location, MAX(cast(total_deaths as int)) as HighestDeathCount, population, date, MAX((total_deaths/population))*100 AS MaxDeathRate
+SELECT location, MAX(cast(total_deaths as int)) as HighestDeathCount, population, date, MAX((total_cases/population))*100 AS PercentPopInfected
 FROM dbo.CovidDeaths
 --WHERE location like '%states%'
 WHERE continent is not null
 GROUP BY location, population, date
---ORDER BY MaxInfectionRate DESC
+--ORDER BY PercentPopInfected DESC
 
