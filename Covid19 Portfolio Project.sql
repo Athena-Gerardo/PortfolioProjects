@@ -35,7 +35,7 @@ and continent is not null
 ORDER BY 1,2
 
 
--- Looking at countries with the Highest Infection rates compared to the Population?
+-- Looking at countries with the Highest Infection rates compared to the Population
 
 SELECT location, MAX(total_cases) as HighestInfectionCount, population, MAX((total_cases/population))*100 AS MaxInfectionRate
 FROM dbo.CovidDeaths
