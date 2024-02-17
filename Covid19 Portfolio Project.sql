@@ -149,6 +149,16 @@ SELECT *, (RollingPeopleVaccinated/Population)*100 as NewVaccinesPerDay
 FROM #PercentPopulationVaccinated
 
 
+-- European Union was separated in dataset, create table to join them
+	
+Select location, SUM(cast(new_deaths as int)) as TotalDeathCount
+From dbo.CovidDeaths
+--Where location like '%states%'
+Where continent is null 
+and location not in ('World', 'European Union', 'International')
+Group by location
+order by TotalDeathCount desc
+
 -- Creating View to store data for later visualizations; creates permanent table for viewing, can write queries off of it too
 
 CREATE VIEW PercentPopulationVaccinated as 
@@ -181,3 +191,32 @@ FROM dbo.CovidDeaths
 WHERE --location like '%states%'
 continent is not null
 --ORDER BY 1,2
+
+CREATE VIEW TotalDeathCountCountry as
+Select location, SUM(cast(new_deaths as int)) as TotalDeathCount
+From dbo.CovidDeaths
+--Where location like '%states%'
+Where continent is null 
+and location not in ('World', 'European Union', 'International')
+Group by location
+order by TotalDeathCount desc
+
+
+CREATE VIEW HighestInfectionCountperCountry as
+SELECT location, MAX(total_cases) as HighestInfectionCount, population, MAX((total_cases/population))*100 AS MaxInfectionRate
+FROM dbo.CovidDeaths
+WHERE continent is not null
+GROUP BY location, population
+--ORDER BY MaxInfectionRate DESC
+
+
+--Create a view to include dates
+
+CREATE VIEW HighestInfectionCountperCountryperDay as
+SELECT location, MAX(cast(total_deaths as int)) as HighestDeathCount, population, date, MAX((total_deaths/population))*100 AS MaxDeathRate
+FROM dbo.CovidDeaths
+--WHERE location like '%states%'
+WHERE continent is not null
+GROUP BY location, population, date
+--ORDER BY MaxInfectionRate DESC
+
