@@ -162,4 +162,22 @@ JOIN dbo.CovidVaccinations as vac
 WHERE dea.continent is not null
 --ORDER BY 2,3
 
+CREATE VIEW TotalWorldDeathRates as
+SELECT SUM(new_cases) as total_cases, SUM(cast(new_deaths as int)) as total_deaths, (SUM(cast(new_deaths as int))/SUM(new_cases))*100 AS GlobalDeathPercentage
+FROM dbo.CovidDeaths
+WHERE continent is not null
 
+
+CREATE VIEW TotalDeathCountPerContinent as
+SELECT continent, MAX(cast(total_deaths as int)) as HighestDeathCount, MAX((total_deaths/population))*100 AS MaxDeathRate
+FROM dbo.CovidDeaths
+WHERE continent is not null
+GROUP BY continent
+
+
+CREATE VIEW InfectionRateByPopulation as
+SELECT location, date, total_cases, population, (total_cases/population)*100 AS InfectedPopulationPercentage
+FROM dbo.CovidDeaths
+WHERE --location like '%states%'
+continent is not null
+--ORDER BY 1,2
