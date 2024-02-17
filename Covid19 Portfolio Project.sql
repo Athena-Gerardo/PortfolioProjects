@@ -159,6 +159,13 @@ and location not in ('World', 'European Union', 'International')
 Group by location
 order by TotalDeathCount desc
 
+/*
+Covid 19 Tableau Setup 
+
+Skills used: Create Views
+
+*/
+
 -- Creating View to store data for later visualizations; creates permanent table for viewing, can write queries off of it too
 
 CREATE VIEW PercentPopulationVaccinated as 
