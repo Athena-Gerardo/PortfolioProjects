@@ -163,3 +163,69 @@ DROP COLUMN TaxDistrict
 
 SELECT *
 FROM dbo.NashvilleHousing
+
+
+-- Separate year from SaleDateConverted for further exploration
+
+SELECT 
+	YEAR(SaleDateConverted) as SaleYear
+FROM dbo.NashvilleHousing
+
+ALTER TABLE dbo.NashvilleHousing 
+ADD SaleYear Int
+
+UPDATE dbo.NashvilleHousing
+SET SaleYear = YEAR(SaleDateConverted)
+
+
+-- Replace values for the LandUse column
+
+SELECT LandUse,
+	CASE WHEN LandUse = 'VACANT RES LAND' THEN 'VACANT RESIDENTIAL LAND'
+		 ELSE LandUse
+		 END
+FROM dbo.NashvilleHousing
+
+UPDATE NashvilleHousing
+SET LandUse = CASE WHEN LandUse = 'VACANT RES LAND' THEN 'VACANT RESIDENTIAL LAND'
+		 ELSE LandUse
+		 END
+
+
+-- Make sure all houses are located in TN
+
+SELECT PropertySplitCity
+FROM dbo.NashvilleHousing
+WHERE PropertySplitCity is NULL -- nothing shows up, good!
+
+SELECT PropertySplitCity
+FROM dbo.NashvilleHousing
+GROUP BY PropertySplitCity
+ORDER BY PropertySplitCity -- all cities are suburbs of Nashville, checked and good to go.
+
+
+SELECT LandValue
+FROM dbo.NashvilleHousing
+WHERE LandValue is NULL
+
+
+-- Validate the Sale Price and the TotalValue of each house sold
+
+SELECT SalePrice, TotalValue, SaleYear
+FROM dbo.NashvilleHousing
+WHERE SalePrice is NULL
+OR TotalValue is NULL
+OR SaleYear is NULL
+ORDER BY SaleYear
+
+SELECT MAX(TotalValue) MxTV, MAX(SalePrice) MxSP, SaleYear, LandUse
+FROM dbo.NashvilleHousing
+WHERE TotalValue is not NULL
+GROUP BY SaleYear, LandUse
+ORDER BY SaleYear
+
+SELECT COUNT(LandUse), MAX(TotalValue) as MxTV, LandUse, MAX(SalePrice) AS MxSP, SaleYear
+from dbo.NashvilleHousing
+WHERE TotalValue is not NULL
+GROUP BY LandUse, SaleYear
+ORDER BY SaleYear
