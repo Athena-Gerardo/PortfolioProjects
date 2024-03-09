@@ -4,6 +4,23 @@ Nashville Housing Data Exploration
 
 Skills used: Date extraction, UPDATE & ALTER tables, CAST with aggregate function, 
 
+How does this help a business?
+
+First, I used SQL to delve into metrics encompassing city data, sale years, building types, and construction years of the houses. 
+My aim was to uncover profit margin patterns tied to these metrics, which help a businesses adjust their pricing strategies to 
+remain competitive and attract more customers. These analyses offer insights into the overall health and dynamics
+of the real estate market.
+
+Additionally, clustering algorithms were applied to compare average sale prices with market values, revealing fluctuations based 
+on various metrics. These insights not only aid in identifying lucrative investment opportunities but also help assess the risks 
+associated with property investments.
+
+The SQL queries are used to generate visualizations in Tableau that help illustrate the trends within the real estate market and the 
+corresponding contributions to the housing market's revenue generation. The Tableau dashboard is used to present my findings and provide 
+actionable insights for pricing strategies. By leveraging SQL to perform market analysis, the company gained valuable insights into the 
+overall health of the current real estate market, enabling them to make possible investment opportunities, assess associated risk, and 
+optimize their revenue generation.
+
 */
 
 -- Things to explore: What are the avg prices of houses in each city? How are the prices going up by year? Most common landuse type of house sold? Average price of houses per bedrooms/baths? Actual value vs sale price (and the % difference)?
@@ -108,21 +125,3 @@ SELECT SUM(SalePrice) AS TotalSales, SUM(TotalValue) AS TotalMarketValue, SUM(Sa
 FROM dbo.NashvilleHousing
 WHERE SaleYear <> 2019
 AND TotalValue is not NULL
-
-/*
-How does this help a business?
-
-First, I used SQL to delve into metrics encompassing city data, sale years, building types, and construction years of the houses. 
-My aim was to uncover profit margin patterns tied to these metrics, which help a businesses adjust their pricing strategies to 
-remain competitive and attract more customers. These analyses offer insights into the overall health and dynamics
-of the real estate market.
-
-Additionally, clustering algorithms were applied to compare average sale prices with market values, revealing fluctuations based 
-on various metrics. These insights not only aid in identifying lucrative investment opportunities but also help assess the risks 
-associated with property investments.
-
-The SQL queries are used to generate visualizations in Tableau that help illustrate the trends within the real estate market and the 
-corresponding contributions to the housing market's revenue generation. The Tableau dashboard is used to present my findings and provide 
-actionable insights for pricing strategies. By leveraging SQL to perform market analysis, the company gained valuable insights into the 
-overall health of the current real estate market, enabling them to make possible investment opportunities, assess associated risk, and 
-optimize their revenue generation.
