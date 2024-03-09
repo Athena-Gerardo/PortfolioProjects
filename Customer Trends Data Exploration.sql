@@ -116,7 +116,7 @@ Next, I utilized SQL to implement clustering algorithms that show customer group
 the highest-revenued season, the most common item purchased, location-based purchases, and subscription-based purchases. By applying these 
 clustering techniques, I categorized customers into distinct groups, such as loyal customers and casual shoppers.
 
-The SQL queries I are used to generate visualizations in Tableau that help illustrate the distribution of these customer groups and their 
+The SQL queries are used to generate visualizations in Tableau that help illustrate the distribution of these customer groups and their 
 corresponding contributions to the company's revenue. The Tableau dashboard is used to present my findings to highlight the customer groups and 
 provide actionable insights for targeted consumer marketing strategies. By leveraging SQL to perform customer segmentation, the company 
 gained valuable insights into its customer base, enabling them to tailor marketing campaigns, improve customer retention, and optimize their revenue generation.
