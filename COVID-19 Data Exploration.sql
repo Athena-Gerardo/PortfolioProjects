@@ -3,6 +3,21 @@ Covid 19 Data Exploration
 
 Skills used: Joins, CTE's, Temp Tables, Windows Functions, Aggregate Functions, Creating Views, Converting Data Types
 
+How does this help a business?
+
+First, I used SQL to explore customer metrics such as total customer spending, customer purchasing frequency, and the average order value 
+of our cusomters. I am setting up the metrics of who are high-value customers that make large purchases, which contributes greatly
+to the company's revenue, and who are casual shoppers.
+
+Next, I utilized SQL to implement clustering algorithms that show customer groups based on their purchasing habits. I used factors like
+the highest-revenued season, the most common item purchased, location-based purchases, and subscription-based purchases. By applying these 
+clustering techniques, I categorized customers into distinct groups, such as loyal customers and casual shoppers.
+
+The SQL queries are used to generate visualizations in Tableau that help illustrate the distribution of these customer groups and their 
+corresponding contributions to the company's revenue. The Tableau dashboard is used to present my findings to highlight the customer groups and 
+provide actionable insights for targeted consumer marketing strategies. By leveraging SQL to perform customer segmentation, the company 
+gained valuable insights into its customer base, enabling them to tailor marketing campaigns, improve customer retention, and optimize their revenue generation.
+
 */
 
 SELECT *
